@@ -32,6 +32,7 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # 递归
         if l1 is None:
             return l2
         elif l2 is None:
