@@ -45,21 +45,21 @@
 # @lc code=start
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        # DFS 回溯 记忆中间结果
+        # DFS 记忆中间结果
         def dfs(i, j):
-            if not dp[i][j]:
+            if not cache[i][j]:
                 val = matrix[i][j]
-                dp[i][j] =  1 + max(
+                cache[i][j] =  1 + max(
                 dfs(i-1, j) if i and val < matrix[i-1][j] else 0,
                 dfs(i+1, j) if i+1 < row and val < matrix[i+1][j] else 0,
                 dfs(i, j-1) if j and val < matrix[i][j-1] else 0,
                 dfs(i, j+1) if j+1 < col and val < matrix[i][j+1] else 0)
-            return dp[i][j]
+            return cache[i][j]
         if not matrix or not matrix[0]:
             return 0
         row = len(matrix)
         col = len(matrix[0])
-        dp = [[0] * col for _ in range(row)] 
+        cache = [[0] * col for _ in range(row)] 
         return max(dfs(i, j) for i in range(row) for j in range(col))
 # @lc code=end
 
