@@ -31,18 +31,9 @@
 # @lc code=start
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # 动态规划
-        # if nums:
-        #     res = dp = nums[0]
-        #     for i in range(1,len(nums)):
-        #         dp = max(dp+nums[i], nums[i])
-        #         res = max(res, dp)
-        #     return res
-
-        if nums:
-            for i in range(1,len(nums)):
-                if nums[i-1] > 0:
-                    nums[i] += nums[i-1]
-            return max(nums)
+        # 动态规划 原地修改
+        for i in range(1, len(nums)):
+            nums[i] += max(nums[i-1], 0)
+        return max(nums)
 # @lc code=end
 

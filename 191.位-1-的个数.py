@@ -57,6 +57,7 @@
 # @lc code=start
 class Solution:
     def hammingWeight(self, n: int) -> int:
+        # 位运算
         count = 0
         while n:
             count += 1

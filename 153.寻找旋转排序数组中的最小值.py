@@ -44,7 +44,7 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid
-        return nums[left]  # left == right 结束循环 min = left or right
+        return nums[left]
 
 # @lc code=end
 

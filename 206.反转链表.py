@@ -35,7 +35,7 @@ class ListNode:
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         # 双指针
-        pre, cur = None, head # 尾结点的next必须为None
+        pre, cur = None, head
         while cur:
             cur.next, pre, cur = pre, cur, cur.next
         return pre
