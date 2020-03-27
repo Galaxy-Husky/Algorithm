@@ -35,34 +35,34 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         # 二分查找
-        return [self.search_first(nums, target), self.search_last(nums, target)]
-    
-    def search_first(self, nums, target):
-        first_index = -1
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            mid = (left + right) // 2
-            if nums[mid] < target:
-                left = mid + 1
-            else:
-                right = mid - 1
-            if nums[mid] == target:
-                first_index = mid
-        return first_index
-        
+        if not nums:
+            return [-1, -1]
+        res = []
 
-    def search_last(self, nums, target):
-        last_index = -1
         left, right = 0, len(nums) - 1
-        while left <= right:
+        while left < right:
             mid = (left + right) // 2
-            if nums[mid] > target:
-                right = mid - 1
-            else:
-                left = mid + 1
             if nums[mid] == target:
-                last_index = mid
-        return last_index
+                right = mid
+            elif nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
+        if nums[left] != target:
+            return [-1, -1]
+        res.append(left)
+        
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2 + 1
+            if nums[mid] == target:
+                left = mid
+            elif nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
+        res.append(left)
+        return res
 
 # @lc code=end
 

@@ -40,10 +40,10 @@ class TreeNode:
 
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        # 栈
+        # DFS 栈 迭代
         res, stack = [], []
         cur = root
-        while cur or stack:
+        while cur or stack:  # cur非空-> 还有左子树；stack非空->还有右子树
             while cur:
                 stack.append(cur)
                 cur = cur.left
