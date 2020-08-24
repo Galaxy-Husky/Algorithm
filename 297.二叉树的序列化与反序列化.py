@@ -45,6 +45,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+import collections
 
 class Codec:
 
@@ -54,6 +55,7 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
+        #DFS 先序遍历
         def preorder(root):
             if not root:
                 serial.append('#')
@@ -65,6 +67,21 @@ class Codec:
         serial = []
         preorder(root)
         return ','.join(serial)
+
+        """ # BFS
+        if not root:
+            return '[]'
+        q = collections.deque([root])
+        res = []
+        while q:
+            node = q.popleft()
+            if node:
+                res.append(str(node.val))
+                q.append(node.left)
+                q.append(node.right)
+            else:
+                res.append('#')
+        return ','.join(res) """
         
 
     def deserialize(self, data):
@@ -73,6 +90,7 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+        """ # iter + next
         def build():
             s = next(serial)
             if s == '#':
@@ -83,7 +101,40 @@ class Codec:
             return node
 
         serial = iter(data.split(','))
-        return build()
+        return build() """
+
+        def build():
+            val = data.pop(0)
+            if val == '#':
+                return None
+            node = TreeNode(int(val))
+            node.left = build()
+            node.right = build()
+            return node
+
+        data = data.split(',')
+        root = build()
+        return root
+
+        """ if data == '[]':
+            return None
+        data = data.split(",")
+        i = 1
+        root = TreeNode(int(data[0]))
+        q = collections.deque([root])
+        while q:
+            node = q.popleft()
+            if data[i] != '#':
+                node.left = TreeNode(int(data[i]))
+                q.append(node.left)
+            i += 1
+            if data[i] != '#':
+                node.right = TreeNode(int(data[i]))
+                q.append(node.right)
+            i += 1
+        return root """
+            
+
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()

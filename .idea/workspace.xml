@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="186311e6-61fb-4d3b-b7c9-6c5790bf6432" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/8.字符串转换整数-atoi.py" beforeDir="false" afterPath="$PROJECT_DIR$/8.字符串转换整数-atoi.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="a6e2c273-61ec-425a-9b41-0ac8800d2959" />
+  <component name="ProjectId" id="1gYXWdV66dvHomcyeNlwY1AmVht" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/pycharm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="186311e6-61fb-4d3b-b7c9-6c5790bf6432" name="Default Changelist" comment="" />
+      <created>1598292532916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598292532916</updated>
+      <workItem from="1598292534599" duration="33000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="681" y="456" key="FileChooserDialogImpl" timestamp="1598292566477">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="681" y="456" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598292566477" />
+  </component>
+</project>
