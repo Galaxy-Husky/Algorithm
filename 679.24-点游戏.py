@@ -44,9 +44,9 @@ class Solution:
     def judgePoint24(self, nums: List[int]) -> bool:
         # DFS 递归
         # 四个数取出两个数之后,做加减乘除处理之后加入到原数组中会剩下三个数,递归交给下一层去处理
-        def dfs(nums):
+        """ def dfs(nums):l
             l = len(nums)
-            if len(nums) == 1:
+            if l == 1:
                 return abs(nums[0] - 24) < eps
             for i in range(l):
                 for j in range(i+1, l):
@@ -57,6 +57,35 @@ class Solution:
                         return True
             return False
         eps = 1e-6
+        return dfs(nums) """
+        def dfs(nums):
+            l = len(nums)
+            if l == 1:
+                return abs(nums[0] - 24) < eps
+            for i, x in enumerate(nums):
+                for j, y in enumerate(nums):
+                    if i != j:
+                        new_nums = [nums[k] for k in range(l) if i != k != j]
+                        for k in range(4):
+                            if k < 2 and i > j:
+                                continue
+                            if k == add:
+                                new_nums.append(x + y)
+                            elif k == multiply:
+                                new_nums.append(x * y)
+                            elif k == subtract:
+                                new_nums.append(x - y)
+                            elif k == divide:
+                                if abs(y) < eps:
+                                    continue
+                                new_nums.append(x / y)
+                            if dfs(new_nums):
+                                return True
+                            new_nums.pop()
+            return False
+
+        eps = 1e-6
+        add, multiply, subtract, divide = 0, 1, 2, 3
         return dfs(nums)
 # @lc code=end
 
