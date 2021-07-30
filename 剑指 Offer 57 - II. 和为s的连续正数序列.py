@@ -1,15 +1,14 @@
 class Solution:
     def findContinuousSequence(self, target: int) -> List[List[int]]:
-        # 滑动窗口
-        left, right, res = 1, 2, []
-        while left <= target // 2:
-            alist = list(range(left, right+1))
-            cur_sum = sum(alist)
-            if cur_sum == target:
-                res.append(alist)
-                left += 2
-            elif cur_sum < target:
-                right += 1
+        # 滑动窗口-双指针
+        i, j, s, res = 1, 2, 3, []
+        while i < j:
+            if s == target:
+                res.append(list(range(i, j+1)))
+            if s < target:
+                j += 1
+                s += j
             else:
-                left += 1
+                s -= i
+                i += 1
         return res

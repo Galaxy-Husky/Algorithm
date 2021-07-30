@@ -62,5 +62,20 @@ class Solution:
                     q.append(cur.right)
             res.append(level)
         return res
+
+        '''# 递归
+        res = []
+        
+        def recur(node, depth):
+            if not node:
+                return
+            if len(res) == depth:
+                res.append([])
+            res[depth].append(node.val)
+            recur(node.left, depth+1)
+            recur(node.right, depth+1)
+        
+        recur(root, 0)
+        return res'''
 # @lc code=end
 

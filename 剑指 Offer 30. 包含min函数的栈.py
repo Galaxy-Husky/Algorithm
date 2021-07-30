@@ -13,18 +13,11 @@ class MinStack:
             self.helper.append(x)            
 
     def pop(self) -> None:
-        if not self.data:
-            return
-            
         if self.data.pop() == self.helper[-1]:
             self.helper.pop()
 
     def top(self) -> int:
-        if not self.data:
-            return
         return self.data[-1]
 
     def min(self) -> int:
-        if not self.helper:
-            return 
         return self.helper[-1]

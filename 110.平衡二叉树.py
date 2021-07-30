@@ -62,8 +62,8 @@
 
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
-        # 自底向上 DFS
-        def dfs(root):
+        # 递归-一棵子树不平衡，则整个二叉树一定不平衡-自底向上
+        def recur(root):
             if not root:
                 return 0
             left = dfs(root.left)
@@ -73,6 +73,6 @@ class Solution:
             if right == -1:
                 return -1
             return max(left, right) + 1 if abs(left - right) <= 1 else -1
-        return dfs(root) != -1
+        return recur(root) != -1
 # @lc code=end
 
