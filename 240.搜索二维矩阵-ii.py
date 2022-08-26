@@ -48,11 +48,9 @@ class Solution:
         :type target: int
         :rtype: bool
         """
-        if not len(matrix) or not len(matrix[0]):
-            return False
-        row, col = len(matrix), len(matrix[0])
-        i, j = row - 1, 0
-        while i >= 0 and j < col:
+        # 类似二叉搜索树-左下角or右上角
+        i, j = len(matrix) - 1, 0
+        while i >= 0 and j < len(matrix[0]):
             n = matrix[i][j]
             if n == target:
                 return True
