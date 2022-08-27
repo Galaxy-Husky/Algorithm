@@ -59,16 +59,37 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         # 栈：开入闭出
-        paren_dict = {')': '(', '}': '{', ']': '['}
+
+        # 1. 闭key开value
+        # paren_dict = {')': '(', '}': '{', ']': '['}
+        # stack = []
+        # for p in s:
+        #     if p not in paren_dict:
+        #         stack.append(p)
+        #     else:
+        #         if not stack or paren_dict[p] != stack.pop():
+        #             return False
+        # return not stack
+
+        # 2.开key闭value
+        paren_dict = {'(': ')', '{': '}', '[': ']'}
         stack = []
         for p in s:
-            if p not in paren_dict:
+            if p in paren_dict:
                 stack.append(p)
             else:
-                top = stack.pop() if stack else '#'
-                if paren_dict[p] != top:
+                if not stack or paren_dict[stack.pop()] != p:
                     return False
         return not stack
+
+        # # python replace
+        # while len(s) > 0:
+        #     length = len(s)
+        #     s = s.replace('()', '').replace('{}', '').replace('[]', '')
+        #     if length == len(s):
+        #         return False
+        # return True
+
 
 # @lc code=end
 

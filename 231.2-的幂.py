@@ -37,6 +37,13 @@
 # @lc code=start
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        return n > 0 and not(n & n-1)
+        # 1. 位运算
+
+        # 1.1
+        return n > 0 and not (n & n-1)
+        
+        # # 1.2 
+        # return n > 0 and (n & -n) == n
+
 # @lc code=end
 

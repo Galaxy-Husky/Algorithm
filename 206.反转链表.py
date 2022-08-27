@@ -28,25 +28,35 @@
 # @lc code=start
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
-    def reverseList(self, head: ListNode) -> ListNode:
-        # 迭代-双指针
-        pre, cur = None, head
-        while cur:
-            cur.next, pre, cur = pre, cur, cur.next
-        return pre
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # # 1. 迭代-双指针
+        # pre, cur = None, head
 
-        '''# 递归
+        # # 1.1 
+        # while cur:
+        #     cur.next, pre, cur = pre, cur, cur.next
+        # return pre
+
+        # # 1.2
+        # while cur:
+        #     tmp = cur.next
+        #     cur.next = pre
+        #     pre = cur 
+        #     cur = tmp 
+        # return pre
+
+        # 2. 递归
         if not head or not head.next:
             return head
         res = self.reverseList(head.next)
         head.next.next = head
         head.next = None
-        return res'''
+        return res
 
 # @lc code=end
 

@@ -39,24 +39,27 @@
 #
 
 # @lc code=start
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        """ # 动态规划
-        n = len(prices)
-        if n == 0: 
-            return 0
-        dp = [0] * n
-        minprice = prices[0]
-        for i in range(1, n):
-            minprice = min(minprice, prices[i])
-            dp[i] = max(dp[i-1], prices[i] - minprice)
-        return dp[-1] """
-        #动态规划 优化
-        minprice, maxprofit = float('inf'), 0
+        # 1. 一次遍历 (动态规划优化)
+        min_price = float('inf')
+        max_profit = 0
         for price in prices:
-            minprice = min(minprice, price)
-            maxprofit = max(maxprofit, price - minprice)
-        return maxprofit
+            max_profit = max(price - min_price, max_profit)
+            min_price = min(price, min_price)
+        return max_profit
+
+        # # 2. 动态规划
+        # n = len(prices)
+        # if n == 0: 
+        #     return 0
+        # dp = [0] * n
+        # min_price = prices[0]
+        # for i in range(1, n):
+        #     dp[i] = max(dp[i-1], prices[i] - min_price)
+        #     min_price = min(min_price, prices[i])
+        # return dp[-1]
 
 # @lc code=end
 

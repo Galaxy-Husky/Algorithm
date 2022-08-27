@@ -62,8 +62,17 @@ class ListNode:
         self.next = None
 
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
-        # 快慢指针
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        # # 1. 哈希表
+        # seen = set()
+        # while head:
+        #     if head in seen:
+        #         return True
+        #     seen.add(head)
+        #     head = head.next
+        # return False
+
+        # 2. 快慢指针（龟兔赛跑）
         slow, fast = head, head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next

@@ -34,35 +34,37 @@
 
 # @lc code=start
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        '''# DFS 递归
-        if not root:
-            return 0
-        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1'''
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        # # 1. DFS 递归
+        # if not root:
+        #     return 0
+        # return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
         
-        # BFS 迭代
-        '''if not root:
-            return 0
-        depth = 0
-        q = [root]
-        while q:
-            depth += 1
-            tmp = []
-            for node in q:
-                if node.left:
-                    tmp.append(node.left)
-                if node.right:
-                    tmp.append(node.right)
-            q = tmp
-        return depth'''
+        # 2. BFS 迭代
+        # 2.1
+        # if not root:
+        #     return 0
+        # depth = 0
+        # q = [root]
+        # while q:
+        #     depth += 1
+        #     tmp = []
+        #     for node in q:
+        #         if node.left:
+        #             tmp.append(node.left)
+        #         if node.right:
+        #             tmp.append(node.right)
+        #     q = tmp
+        # return depth
 
+        # 2.2
         if not root:
             return 0
         depth = 0

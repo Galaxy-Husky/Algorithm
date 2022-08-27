@@ -38,21 +38,58 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # nums1[:] = sorted(nums1[:m] + nums2)
+        # # 直接合并排序
+        # nums1[m:] = nums2
+        # nums1.sort()
 
-        # 双指针/从后往前
-        p1 = m - 1
-        p2 = n - 1
-        p = m + n -1
-        while p1 >= 0 and p2 >= 0:
-            if nums1[p1] < nums2[p2]:
-                nums1[p] = nums2[p2]
-                p2 -= 1
+        # 双指针
+        # # 1.从前往后
+        # sorted = []
+        # p1 = p2 = 0
+        # while p1 < m or p2 < n:
+        #     if p1 == m:
+        #         sorted.append(nums2[p2])
+        #         p2 += 1
+        #     elif p2 == n:
+        #         sorted.append(nums1[p1])
+        #         p1 += 1
+        #     elif nums1[p1] < nums2[p2]:
+        #         sorted.append(nums1[p1])
+        #         p1 += 1
+        #     else:
+        #         sorted.append(nums2[p2])
+        #         p2 += 1
+        # nums1[:] = sorted
+
+        # 2. 从后往前
+        # 2.1 
+        # p1 = m - 1
+        # p2 = n - 1
+        # p = m + n -1
+        # while p1 >= 0 or p2 >= 0:
+        #     if p1 == -1:
+        #         nums1[p] = nums2[p2]
+        #         p2 -= 1
+        #     elif p2 == -1:
+        #         nums1[p] = nums1[p1]
+        #         p1 -= 1
+        #     elif nums1[p1] < nums2[p2]:
+        #         nums1[p] = nums2[p2]
+        #         p2 -= 1
+        #     else:
+        #         nums1[p] = nums1[p1]
+        #         p1 -= 1
+        #     p -= 1
+        
+        # 2.2
+        while m > 0 and n > 0:
+            if nums1[m-1] < nums2[n-1]:
+                nums1[m+n-1] = nums2[n-1]
+                n -= 1
             else:
-                nums1[p] = nums1[p1]
-                p1 -= 1
-            p -= 1       
-        nums1[:p2 + 1] = nums2[:p2 + 1]
+                nums1[m+n-1] = nums1[m-1]
+                m -= 1
+        nums1[:n] = nums2[:n]         
         
 # @lc code=end
 

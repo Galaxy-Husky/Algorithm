@@ -42,17 +42,19 @@
 # @lc code=start
 class Solution:
     def climbStairs(self, n: int) -> int:
-        '''# 动态规划
-        if n < 2:
-            return 1
-        dp = [1, 1]
-        for i in range(2, n+1):
-           dp.append((dp[i-1] + dp[i-2]))
-        return dp[n]'''
+        # 动态规划
 
-        # 斐波那契
-        a, b = 1, 1
-        for i in range(n):
+        # # 1. 直接dp
+        # if n < 2:
+        #     return 1
+        # dp = [1, 1]
+        # for i in range(2, n+1):
+        #    dp.append((dp[i-1] + dp[i-2]))
+        # return dp[n]
+
+        # 2. fibonacci 滚动数组
+        a = b = 1
+        for _ in range(n):
             a, b = b, a + b
         return a
         
