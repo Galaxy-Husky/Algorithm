@@ -42,7 +42,7 @@
 # @lc code=start
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        # 控制边界
+        # 1. 控制边界
         if not matrix or not matrix[0]:
             return []
         res = []
@@ -67,11 +67,11 @@ class Solution:
                 break
         return res
         
-        '''# 删除第一行-逆时针旋转90度
-        res = []
-        while matrix:
-            res.extend(matrix.pop(0))
-            matrix = list(zip(*matrix))[::-1]
-        return res'''
+        # # 2. 删除第一行-逆时针旋转90度
+        # res = []
+        # while matrix:
+        #     res.extend(matrix.pop(0))
+        #     matrix = list(zip(*matrix))[::-1]
+        # return res
 # @lc code=end
 

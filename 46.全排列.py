@@ -31,22 +31,27 @@
 #
 
 # @lc code=start
+from itertools import permutations
+
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        # DFS 回溯原地修改
-        def dfs(start):
-            if start == n-1:
-                res.append(nums[:])
-                return
-            for i in range(start, n):
-                nums[i], nums[start] = nums[start], nums[i]
-                dfs(start+1)
-                nums[i], nums[start] = nums[start], nums[i]
-        res = []
-        n = len(nums)
-        dfs(0)
-        return res
-        """ # DFS 回溯新建数组
+        # # 1. 回溯
+        # # 1.1 原地修改
+        # def backtrack(start):
+        #     if start == n:
+        #         res.append(nums[:])
+        #         return
+        #     for i in range(start, n):
+        #         nums[i], nums[start] = nums[start], nums[i]
+        #         backtrack(start+1)
+        #         nums[i], nums[start] = nums[start], nums[i]
+        # res = []
+        # n = len(nums)
+        # backtrack(0)
+        # return res
+
+        # 1.2 新建数组
         def dfs(nums, path):
             if not nums:
                 res.append(path)
@@ -55,6 +60,9 @@ class Solution:
                 dfs(nums[:i] + nums[i+1:], path+[nums[i]])
         res = []
         dfs(nums, [])
-        return res """
+        return res
+
+        # # 2. python permutations
+        # return list(permutations(nums))
 # @lc code=end
 

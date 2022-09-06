@@ -73,22 +73,26 @@
 import re
 class Solution:
     def myAtoi(self, s: str) -> int:
-        """ # 正则
-        return max(min(int(*re.findall('^[\+\-]?\d+', s.lstrip())), 2**31-1), -2**31) """
+        min_value, max_value = -2**31, 2**31-1
+        # # 1. 正则
+        # return max(min(int(*re.findall('^[\+\-]?\d+', s.lstrip())), max_value), min_value)
+
+        # 2. 去除空格0->判断正负->ord转换数字->判断溢出
         s = s.strip()
         if not s:
            return 0
-        base, i, sign = 0, 0, 1
-        int_max, int_min = 2**31-1, -2**31
-        if s[0] == '-':
-            sign = -1
+        base, i = 0, 0
+        sign = -1 if s[0] == '-' else 1
         if s[0] in '+-':
             i += 1
         for c in s[i:]:
             if not c.isdigit():
                 break
-            base = 10 * base + ord(c) - ord('0')
-        return max(-base, int_min) if sign == -1 else min(base, int_max)
+            digit = ord(c) - ord('0')
+            if base > max_value // 10 or base == max_value // 10 and digit > max_value % 10:
+                return max_value if sign == 1 else min_value
+            base = 10 * base + digit
+        return base * sign
 
 
 # @lc code=end

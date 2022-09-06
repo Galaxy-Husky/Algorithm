@@ -37,26 +37,46 @@
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        """ # DFS 回溯记录结点
-        def dfs(start, path):
-            res.append(path)
-            for i in range(start, len(nums)):
-                dfs(i+1, path+[nums[i]])
+        # # 1. 二进制位
+        # n = len(nums)
+        # res = []
+        # for mask in range(0, 1 << n):
+        #     tmp = []
+        #     for i in range(n):
+        #         if mask & (1 << i):
+        #             tmp.append(nums[i])
+        #     res.append(tmp)
+        # return res
+
+        # # 2. 迭代
+        # res = [[]]
+        # for num in nums:
+        #     res.extend([[num] + item for item in res])
+        # return res
+
+        # # 3. 回溯
         res = []
-        dfs(0, [])
-        return res """
-        # DFS 回溯记录深度
+        n = len(nums)
+
+        # 3.1
         def dfs(start, path):
-            if len(path) == k:
-                res.append(path[:])
+            res.append(path[:])
             for i in range(start, n):
                 path.append(nums[i])
                 dfs(i+1, path)
                 path.pop()
-        res = []
-        n = len(nums)
-        for k in range(n+1):
-            dfs(0, [])
+
+        dfs(0, [])
         return res
+
+        # # 3.2
+        # def dfs(start, path):
+        #     res.append(path)
+        #     for i in range(start, n):
+        #         dfs(i+1, path+[nums[i]])
+        # dfs(0, [])
+        # return res
+
+
 # @lc code=end
 

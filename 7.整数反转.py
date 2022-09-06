@@ -42,13 +42,18 @@
 # @lc code=start
 class Solution:
     def reverse(self, x: int) -> int:
-        y, res = abs(x), 0
-        boundary = 2**31-1 if x > 0 else 2**31
-        while y != 0:
-            res = res * 10 + y % 10
-            if res > boundary:
+        min_value, max_value = -2**31, 2**31-1
+        res = 0
+        while x:
+            if res > max_value // 10 or res < min_value // 10 + 1:
                 return 0
-            y //= 10
-        return res if x > 0 else -res
+            pop = x % 10
+            if x < 0 and pop > 0:
+                pop -= 10  # python负数取余问题
+
+            x = (x - pop) // 10
+            res = res * 10 + pop
+        return res
+
 # @lc code=end
 

@@ -64,10 +64,19 @@
 
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
-        # 快慢指针
-        # 相遇时：a + b; f = 2s = s + nb = 2nb, s = nb
-        # 入环处：a + nb
-        # 再次相遇时：得到a
+        # # 1. 哈希表
+        # seen = set()
+        # while head:
+        #     if head in seen:
+        #         return head
+        #     else:
+        #         seen.add(head)
+        #     head = head.next
+        # return None
+
+        # 快慢指针 两次相遇
+        # f=2s f=s+nb -> s=nb
+        # f=a+n(b+c)+b=2s=2(a+b) -> a=c+(n-1)(b+c)
         fast, slow = head, head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next

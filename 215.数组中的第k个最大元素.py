@@ -37,14 +37,59 @@ import heapq
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        # 最小堆
-        h = []
-        for i in range(k):
-            heapq.heappush(h, nums[i])
-        for j in range(k, len(nums)):
-            top = h[0]
-            if nums[j] > top:
-                heapq.heapreplace(h, nums[j])
-        return h[0]
+        # # 1. 堆排序
+        
+        # # 1.1 heapq （小根堆）
+        # # 1.1.1 
+        # return heapq.nlargest(k, nums)[-1]
+
+        # # 1.1.2
+        # min_heap = []
+        # for i in range(k):
+        #     heapq.heappush(min_heap, nums[i])
+        # for j in range(k, len(nums)):
+        #     min_value = min_heap[0]
+        #     if nums[j] > min_value:
+        #         heapq.heapreplace(min_heap, nums[j])
+        # return min_heap[0]
+
+        # # 1.2 heapq （大根堆）
+        # max_heap = [-x for x in nums]
+        # heapq.heapify(max_heap)
+        # for _ in range(k-1):
+        #     heapq.heappop(max_heap)
+        # return -max_heap[0]
+
+        # 2. 快速排序->快速选择
+        return self.quickselect(nums, 0, len(nums)-1, len(nums) - k)
+
+    def quickselect(self, nums, left, right, target):
+
+        def partition(nums, left, right):
+            pivot_index = left
+            pivot = nums[pivot_index]
+            low, high = left + 1, right
+            while True:
+                while low <= high and nums[low] < pivot:
+                    low += 1
+                while high >= low and nums[high] >= pivot:
+                    high -= 1
+                if low > high:
+                    break
+                else:
+                    nums[low], nums[high] = nums[high], nums[low]
+            nums[pivot_index], nums[high] = nums[high], nums[pivot_index]
+            return high
+            
+        pivot_index = partition(nums, left, right)
+        if pivot_index == target:
+            return nums[pivot_index]
+        elif pivot_index < target:
+            return self.quickselect(nums, pivot_index+1, right, target)
+        else:
+            return self.quickselect(nums, left, pivot_index-1, target)
+                
+
+
 # @lc code=end
 

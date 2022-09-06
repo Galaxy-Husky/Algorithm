@@ -33,38 +33,36 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        """ # 动态规划 + 竖着填表
-        l = len(s)
-        dp = [[False] * l for _ in range(l)]
-        start, max_l = 0, 1
-        for j in range(l):
-            for i in range(j+1):
-                if s[i] == s[j]:
-                    if j - i < 2:
-                        dp[i][j] = True
-                    else:
-                        dp[i][j] = dp[i+1][j-1] 
-                if dp[i][j]:
-                    cur_l = j - i + 1
-                    if  cur_l > max_l:
-                        max_l = cur_l
-                        start = i
-        return s[start:start+max_l] """
-        # 中心扩展
+        # # 1. 动态规划 + 竖着填表
+        # l = len(s)
+        # dp = [[False] * l for _ in range(l)]
+        # start, max_l = 0, 1
+        # for j in range(l):
+        #     for i in range(j+1):
+        #         if s[i] == s[j]:
+        #             if j - i < 2:
+        #                 dp[i][j] = True
+        #             else:
+        #                 dp[i][j] = dp[i+1][j-1] 
+        #         if dp[i][j]:
+        #             cur_l = j - i + 1
+        #             if  cur_l > max_l:
+        #                 max_l = cur_l
+        #                 start = i
+        # return s[start:start+max_l]
+
+        # 2. 中心扩展
         def expandcenter(s, left, right):
             while left >= 0 and right < len(s) and s[left] == s[right]:
                 left -= 1
                 right += 1
-            return left+1, right-1
+            return s[left+1:right]
 
-        start, end = 0, 0
+        res = ""
         for i in range(len(s)):
-            left1, right1 = expandcenter(s, i, i)
-            left2, right2 = expandcenter(s, i, i+1)
-            if right1 - left1 > end - start:
-                start, end = left1, right1
-            if right2 - left2 > end - start:
-                start, end = left2, right2
-        return s[start:end+1]
+            odd = expandcenter(s, i, i)
+            even = expandcenter(s, i, i+1)
+            res = max(res, odd, even, key=len)
+        return res
 # @lc code=end
 

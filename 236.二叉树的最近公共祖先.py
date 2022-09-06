@@ -59,14 +59,33 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        # 递归
-        if not root or root == p or root == q:
-            return root
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
-        if left and right:
-            return root
-        return left if left else right
+        # # 1. 递归
+        # if root in (None, p, q):
+        #     return root
+        # left = self.lowestCommonAncestor(root.left, p, q)
+        # right = self.lowestCommonAncestor(root.right, p, q)
+        # if left and right:
+        #     return root
+        # return left if left else right
+
+        # 2. 迭代 哈希表
+        stack = [root]
+        parent = {root: None}
+        while p not in parent or q not in parent:
+            node = stack.pop()
+            if node.left:
+                parent[node.left] = node
+                stack.append(node.left)
+            if node.right:
+                parent[node.right] = node
+                stack.append(node.right)
+        ancestors = set()
+        while p:
+            ancestors.add(p)
+            p = parent[p]
+        while q not in ancestors:
+            q = parent[q]
+        return q
         
 # @lc code=end
 
