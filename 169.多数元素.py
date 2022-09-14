@@ -38,11 +38,11 @@ from collections import Counter
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        # # 1. 排序
+        # # 1. 排序 O(nlogn) O(logn)
         # nums.sort()
         # return nums[len(nums) // 2]
 
-        # 2. 哈希表
+        # 2. 哈希表 O(N) O(N)
         # # 2.1
         # d = {}
         # for i in nums:
@@ -55,7 +55,7 @@ class Solution:
         # return max(counts.keys(), key=counts.get)
 
 
-        # 3. Boyer-Moore 投票
+        # 3. Boyer-Moore 投票 O(N) O(1)
         count, candidate = 0, None
         for num in nums:
             if count == 0:

@@ -42,29 +42,12 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        # # 1. DFS 递归
+        # # 1. DFS 递归 O(N) O(N)
         # if not root:
         #     return 0
         # return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
         
-        # 2. BFS 迭代
-        # 2.1
-        # if not root:
-        #     return 0
-        # depth = 0
-        # q = [root]
-        # while q:
-        #     depth += 1
-        #     tmp = []
-        #     for node in q:
-        #         if node.left:
-        #             tmp.append(node.left)
-        #         if node.right:
-        #             tmp.append(node.right)
-        #     q = tmp
-        # return depth
-
-        # 2.2
+        # 2. BFS 迭代 O(N) O(N)
         if not root:
             return 0
         depth = 0

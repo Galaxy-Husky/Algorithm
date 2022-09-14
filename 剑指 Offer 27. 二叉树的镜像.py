@@ -8,21 +8,21 @@
 
 class Solution:
     def mirrorTree(self, root: TreeNode) -> TreeNode:
-        '''# 递归-自下而上
-        if not root:
-            return None
-        root.left, root.right = self.mirrorTree(root.right), self.mirrorTree(root.left)
-        return root'''
+        # # 1. 递归 O(N) O(N)
+        # if not root:
+        #     return None
+        # root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        # return root
 
-        # 栈-自上而下
+        # 2. 栈 O(N) O(N)
         if not root:
             return None
         stack = [root]
         while stack:
             node = stack.pop()
+            node.left, node.right = node.right, node.left
             if node.left:
                 stack.append(node.left)
             if node.right:
                 stack.append(node.right)
-            node.left, node.right = node.right, node.left
         return root

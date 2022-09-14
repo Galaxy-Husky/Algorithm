@@ -6,16 +6,37 @@
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        # 迭代-双指针
-        pre, cur = None, head
-        while cur:
-            cur.next, pre, cur = pre, cur, cur.next
-        return pre
+        # # 1. 迭代-双指针 O(N) O(1)
+        # pre, cur = None, head
 
-        '''# 递归
-        if not head or not head.next:
-            return head
-        res = self.reverseList(head.next)
-        head.next.next = head
-        head.next = None
-        return res'''
+        # # 1.1 
+        # while cur:
+        #     cur.next, pre, cur = pre, cur, cur.next
+        # return pre
+
+        # # 1.2
+        # while cur:
+        #     tmp = cur.next
+        #     cur.next = pre
+        #     pre = cur 
+        #     cur = tmp 
+        # return pre 
+
+        # 2. 递归 O(N) O(N)
+
+        # 2.1
+        # if not head or not head.next:
+        #     return head
+        # res = self.reverseList(head.next)
+        # head.next.next = head
+        # head.next = None
+        # return res
+
+        # 2.2
+        def recur(pre, cur):
+            if not cur:
+                return pre
+            res = recur(cur, cur.next)
+            cur.next = pre
+            return res
+        return recur(None, head)

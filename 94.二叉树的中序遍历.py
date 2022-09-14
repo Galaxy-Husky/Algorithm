@@ -33,14 +33,26 @@
 # @lc code=start
 # Definition for a binary tree node.
 class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
-        # DFS 栈 迭代
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # # 1. 递归 O(N) O(N)
+        # def dfs(root):
+        #     if not root:
+        #         return
+        #     dfs(root.left)
+        #     res.append(root.val)
+        #     dfs(root.right)
+
+        # res = []
+        # dfs(root)
+        # return res
+
+        # 2. 迭代 O(N) O(N)
         res, stack = [], []
         cur = root
         while cur or stack:  # cur非空-> 还有左子树；stack非空->还有右子树

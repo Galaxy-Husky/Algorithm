@@ -1,6 +1,6 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # 双指针
+        # 双指针 O(N) O(1)
         left, right = 0, len(nums) - 1
         while left < right:
             s = nums[left] + nums[right]

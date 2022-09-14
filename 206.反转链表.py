@@ -34,7 +34,7 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # # 1. 迭代-双指针
+        # # 1. 迭代-双指针 O(N) O(1)
         # pre, cur = None, head
 
         # # 1.1 
@@ -48,15 +48,26 @@ class Solution:
         #     cur.next = pre
         #     pre = cur 
         #     cur = tmp 
-        # return pre
+        # return pre 
 
-        # 2. 递归
-        if not head or not head.next:
-            return head
-        res = self.reverseList(head.next)
-        head.next.next = head
-        head.next = None
-        return res
+        # 2. 递归 O(N) O(N)
+
+        # 2.1
+        # if not head or not head.next:
+        #     return head
+        # res = self.reverseList(head.next)
+        # head.next.next = head
+        # head.next = None
+        # return res
+
+        # 2.2
+        def recur(pre, cur):
+            if not cur:
+                return pre
+            res = recur(cur, cur.next)
+            cur.next = pre
+            return res
+        return recur(None, head)
 
 # @lc code=end
 

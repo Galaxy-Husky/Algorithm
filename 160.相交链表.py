@@ -82,7 +82,7 @@
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        # # 1. 哈希
+        # # 1. 哈希 O(m+n) O(m)
         # set_A = set()
         # cur = headA
         # while cur:
@@ -95,7 +95,7 @@ class Solution:
         #     cur = cur.next
         # return None
 
-        # 2. 双指针 a + all + b = b + all + a
+        # 2. 双指针 O(m+n) O(1) a + all + b = b + all + a
         p, q = headA, headB
         while p != q:
             p = p.next if p else headB

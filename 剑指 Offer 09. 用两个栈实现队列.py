@@ -5,7 +5,7 @@
 
 
 class CQueue:
-    # s1 入队 s2 出队
+    # s1 入队 s2 出队 O(1) O(N)
     def __init__(self):
         self.s1, self.s2 = [], []
 

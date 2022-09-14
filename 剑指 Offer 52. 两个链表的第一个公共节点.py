@@ -7,7 +7,20 @@
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
-        # 双指针 a + all + b = b + all + a
+        # # 1. 哈希 O(m+n) O(m)
+        # set_A = set()
+        # cur = headA
+        # while cur:
+        #     set_A.add(cur)
+        #     cur = cur.next
+        # cur = headB
+        # while cur:
+        #     if cur in set_A:
+        #         return cur
+        #     cur = cur.next
+        # return None
+
+        # 2. 双指针 O(m+n) O(1) a + all + b = b + all + a
         p, q = headA, headB
         while p != q:
             p = p.next if p else headB

@@ -42,7 +42,7 @@
 # @lc code=start
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        # 1. 控制边界
+        # 1. 控制边界 O(MN) O(1)
         if not matrix or not matrix[0]:
             return []
         res = []

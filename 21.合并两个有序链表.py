@@ -32,7 +32,7 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        # 迭代
+        # 1. 迭代 O(m+n) O(1)
         cur = dummy = ListNode(-1)
         while list1 and list2:
             if list1.val <= list2.val:
@@ -45,7 +45,7 @@ class Solution:
         cur.next = list1 if list1 else list2
         return dummy.next
 
-        # 递归
+        # 2. 递归 O(m+n) O(m+n)
         # if not list1:
         #     return list2
         # elif not list2:

@@ -36,7 +36,7 @@
 # @lc code=start
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        # 二分查找
+        # 二分查找 只能比较右边界 O(logn) O(1)
         left, right = 0, len(nums) - 1
         while left < right:  
             mid = (left + right) // 2

@@ -60,7 +60,7 @@ class Solution:
         #     heapq.heappop(max_heap)
         # return -max_heap[0]
 
-        # 2. 快速排序->快速选择
+        # 2. 快速排序->快速选择 O(N) O(logn)
         return self.quickselect(nums, 0, len(nums)-1, len(nums) - k)
 
     def quickselect(self, nums, left, right, target):

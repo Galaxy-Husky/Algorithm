@@ -7,10 +7,10 @@
 
 class Solution:
     def reversePrint(self, head: ListNode) -> List[int]:
-        '''# 递归法
-        return self.reversePrint(head.next) + [head.val] if head else []'''
+        # # 1. 递归 O(N) O(N)
+        # return self.reversePrint(head.next) + [head.val] if head else []
 
-        # 栈
+        # 2. 栈 O(N) O(N)
         stack = []
         while head:
             stack.append(head.val)

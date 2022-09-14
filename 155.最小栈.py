@@ -12,7 +12,7 @@
 # Total Accepted:    263K
 # Total Submissions: 460.8K
 # Testcase Example:  '["MinStack","push","push","push","getMin","pop","top","getMin"]\n' +
-  '[[],[-2],[0],[-3],[],[],[],[]]'
+#  '[[],[-2],[0],[-3],[],[],[],[]]'
 #
 # 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
 # 
@@ -57,7 +57,7 @@
 
 # @lc code=start
 class MinStack:
-    # # 1. 辅助栈
+    # # 1. 辅助栈 O(1) O(N)
 
     # def __init__(self):
     #     """
@@ -85,7 +85,7 @@ class MinStack:
     # def getMin(self) -> int:
     #   return self.min_stack[-1]
 
-    # 2. 保存差值，不用额外空间
+    # 2. 保存差值，不用额外空间 O(1) O(1)
 
     def __init__(self):
         """
