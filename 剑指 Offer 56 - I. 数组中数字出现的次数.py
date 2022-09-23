@@ -1,7 +1,7 @@
 
 class Solution:
     def singleNumbers(self, nums: List[int]) -> List[int]:
-        # 异或 + 分组
+        # 1. 分组异或 O(N) O(1)
         res = 0
         for n in nums:
             res ^= n

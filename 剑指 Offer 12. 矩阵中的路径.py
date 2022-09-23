@@ -1,6 +1,6 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        # DFS+剪枝
+        # 1.1 DFS 回溯 O(MN⋅3^K) O(K)
         def dfs(i, j, k):
             if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]:
                 return False

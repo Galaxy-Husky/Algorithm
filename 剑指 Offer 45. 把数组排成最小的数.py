@@ -1,6 +1,6 @@
 class Solution:
     def minNumber(self, nums: List[int]) -> str:
-        # 字符串排序规则 + 快排
+        # 字符串排序规则+快排
         def partition(strs, start, end):
             pivot = strs[start]
             low, high = start, end
@@ -16,9 +16,9 @@ class Solution:
         def quick_sort(alist, start, end):
             if start >= end:
                 return
-            index = partition(alist, start, end)
-            quick_sort(alist, start, index - 1)
-            quick_sort(alist, index + 1, end)
+            pivot_index = partition(alist, start, end)
+            quick_sort(alist, start, pivot_index - 1)
+            quick_sort(alist, pivot_index + 1, end)
 
         strs = [str(num) for num in nums]
         quick_sort(strs, 0, len(strs) - 1)

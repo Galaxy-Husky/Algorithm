@@ -37,7 +37,7 @@ class Solution:
         #         arr[high], arr[pivot_index] = arr[pivot_index], arr[high]
         #         return high
             
-        #     if left > right:
+        #     if left >= right:
         #         return
         #     pivot = partition(arr, left, right)
         #     quicksort(arr, left, pivot-1)
