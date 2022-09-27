@@ -3,14 +3,14 @@
 #
 # [297] 二叉树的序列化与反序列化
 #
-# https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/description/
+# https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/description/
 #
 # algorithms
-# Hard (44.35%)
-# Likes:    145
+# Hard (58.37%)
+# Likes:    979
 # Dislikes: 0
-# Total Accepted:    16.4K
-# Total Submissions: 36.3K
+# Total Accepted:    184.8K
+# Total Submissions: 316.5K
 # Testcase Example:  '[1,2,3,null,null,4,5]'
 #
 # 
@@ -19,22 +19,47 @@
 # 请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 /
 # 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
 # 
-# 示例: 
-# 
-# 你可以将以下二叉树：
-# 
-# ⁠   1
-# ⁠  / \
-# ⁠ 2   3
-# ⁠    / \
-# ⁠   4   5
-# 
-# 序列化为 "[1,2,3,null,null,4,5]"
-# 
-# 提示: 这与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode
+# 提示: 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode
 # 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。
 # 
-# 说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。
+# 
+# 
+# 示例 1：
+# 
+# 
+# 输入：root = [1,2,3,null,null,4,5]
+# 输出：[1,2,3,null,null,4,5]
+# 
+# 
+# 示例 2：
+# 
+# 
+# 输入：root = []
+# 输出：[]
+# 
+# 
+# 示例 3：
+# 
+# 
+# 输入：root = [1]
+# 输出：[1]
+# 
+# 
+# 示例 4：
+# 
+# 
+# 输入：root = [1,2]
+# 输出：[1,2]
+# 
+# 
+# 
+# 
+# 提示：
+# 
+# 
+# 树中结点数在范围 [0, 10^4] 内
+# -1000 
+# 
 # 
 #
 
@@ -45,6 +70,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 import collections
 
 class Codec:
@@ -55,20 +81,7 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        #DFS 先序遍历
-        def preorder(root):
-            if not root:
-                serial.append('#')
-            else:
-                serial.append(str(root.val))
-                preorder(root.left)
-                preorder(root.right)
-
-        serial = []
-        preorder(root)
-        return ','.join(serial)
-
-        """ # BFS
+        # 1. BFS O(N) O(N)
         if not root:
             return '[]'
         q = collections.deque([root])
@@ -80,8 +93,8 @@ class Codec:
                 q.append(node.left)
                 q.append(node.right)
             else:
-                res.append('#')
-        return ','.join(res) """
+                res.append('null')
+        return '['+','.join(res)+']'
         
 
     def deserialize(self, data):
@@ -90,54 +103,27 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        """ # iter + next
-        def build():
-            s = next(serial)
-            if s == '#':
-                return None
-            node = TreeNode(int(s))
-            node.left = build()
-            node.right = build()
-            return node
-
-        serial = iter(data.split(','))
-        return build() """
-
-        def build():
-            val = data.pop(0)
-            if val == '#':
-                return None
-            node = TreeNode(int(val))
-            node.left = build()
-            node.right = build()
-            return node
-
-        data = data.split(',')
-        root = build()
-        return root
-
-        """ if data == '[]':
-            return None
-        data = data.split(",")
+        if data == '[]':
+            return
+        vals = data[1:-1].split(',')
+        root = TreeNode(int(vals[0]))
         i = 1
-        root = TreeNode(int(data[0]))
         q = collections.deque([root])
         while q:
             node = q.popleft()
-            if data[i] != '#':
-                node.left = TreeNode(int(data[i]))
+            if vals[i] != 'null':
+                node.left = TreeNode(vals[i])
                 q.append(node.left)
             i += 1
-            if data[i] != '#':
-                node.right = TreeNode(int(data[i]))
+            if vals[i] != 'null':
+                node.right = TreeNode(vals[i])
                 q.append(node.right)
             i += 1
-        return root """
-            
-
+        return root        
 
 # Your Codec object will be instantiated and called as such:
-# codec = Codec()
-# codec.deserialize(codec.serialize(root))
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
 # @lc code=end
 

@@ -42,21 +42,21 @@
 # @lc code=start
 class Solution:
     def climbStairs(self, n: int) -> int:
-        # 动态规划
+        # 1. 动态规划 
 
-        # # 1. 直接dp
+        # # 1. O(N) O(N)
         # if n < 2:
         #     return 1
         # dp = [1, 1]
         # for i in range(2, n+1):
         #    dp.append((dp[i-1] + dp[i-2]))
-        # return dp[n]
+        # return dp[-1]
 
-        # 2. fibonacci 滚动数组
+        # 1.2 斐波那契 O(N) O(1)
         a = b = 1
-        for _ in range(n):
+        for _ in range(2, n+1):
             a, b = b, a + b
-        return a
+        return b
         
 # @lc code=end
 
