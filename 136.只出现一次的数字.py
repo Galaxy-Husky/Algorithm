@@ -37,19 +37,21 @@ from functools import reduce
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        # 额外空间
+        # 额外空间 O(N) O(N)
         # 1. 集合：没有加入，已有删除
         # 2. 集合：数组之和-集合之和
         # 3. 哈希表：{数字：次数}
 
-        # 位运算
-        # # 1.
-        # res = 0
-        # for n in nums:
-        #     res ^= n
-        # return res
+        # 额外时间 O(NlogN) O(1)
+        # 1. 排序：相邻元素重复
 
-        # 2. reduce
-        return reduce(lambda x, y: x ^ y, nums)
+        # 1. 位运算-异或 O(N) O(1)
+        res = 0
+        for n in nums:
+            res ^= n
+        return res
+
+        # # 2. reduce
+        # return reduce(lambda x, y: x ^ y, nums)
 # @lc code=end
 

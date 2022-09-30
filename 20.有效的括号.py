@@ -58,9 +58,9 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
-        # 栈：开入闭出
+        # 1. 辅助栈 O(N) O(N)
 
-        # 1. 闭key开value
+        # 1.1 闭key开value
         # paren_dict = {')': '(', '}': '{', ']': '['}
         # stack = []
         # for p in s:
@@ -71,7 +71,7 @@ class Solution:
         #             return False
         # return not stack
 
-        # 2.开key闭value
+        # 1.2 开key闭value
         paren_dict = {'(': ')', '{': '}', '[': ']'}
         stack = []
         for p in s:
@@ -82,8 +82,8 @@ class Solution:
                     return False
         return not stack
 
-        # # python replace
-        # while len(s) > 0:
+        # # 2. python replace
+        # while len(s):
         #     length = len(s)
         #     s = s.replace('()', '').replace('{}', '').replace('[]', '')
         #     if length == len(s):

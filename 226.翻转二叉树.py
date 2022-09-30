@@ -43,14 +43,24 @@
 # @lc code=start
 # Definition for a binary tree node.
 # class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 class Solution:
-    def invertTree(self, root: TreeNode) -> TreeNode:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # # 1. 递归 O(N) O(N)
+
+        # # 1.1
+        # if not root:
+        #     return None
+        # root.left, root.right = root.right, root.left
+        # self.invertTree(root.left)
+        # self.invertTree(root.right)
+        # return root
+
+        # # 1.2
         # if not root:
         #     return None
         # root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)

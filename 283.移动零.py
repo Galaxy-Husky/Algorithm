@@ -35,10 +35,10 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # 双指针
+        # 双指针 O(N) O(1)
         i = 0
         for j in range(len(nums)):
-            if nums[j] != 0:
+            if nums[j]:
                  nums[i], nums[j] = nums[j], nums[i]
                  i += 1
 # @lc code=end

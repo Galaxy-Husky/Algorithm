@@ -30,7 +30,7 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # 字典 -> 哈希表
+        # 哈希表 O(N) O(N)
         num_dict = {}
         for i, e in enumerate(nums):
             if e in num_dict:

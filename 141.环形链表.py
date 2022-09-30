@@ -63,7 +63,7 @@ class ListNode:
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        # # 1. 哈希表
+        # # 1. 哈希表 O(N) O(N)
         # seen = set()
         # while head:
         #     if head in seen:
@@ -72,7 +72,7 @@ class Solution:
         #     head = head.next
         # return False
 
-        # 2. 快慢指针（龟兔赛跑）
+        # 2. 快慢指针 O(N) O(1)
         slow, fast = head, head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
