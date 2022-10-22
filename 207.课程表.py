@@ -48,25 +48,44 @@
 # @lc code=start
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        # BFS 拓扑排序 队列
-        q = []
-        indegree = [0] * numCourses
         adjacency = [[] for _ in range(numCourses)]
+        indegree = [0] * numCourses
         for cur, pre in prerequisites:
             indegree[cur] += 1
             adjacency[pre].append(cur)
-        for i in range(numCourses):
-            if not indegree[i]:
-                q.append(i)
-        while q:
-            pre = q.pop(0)
-            numCourses -= 1
-            for cur in adjacency[pre]:
-                indegree[cur] -= 1
-                if not indegree[cur]:
-                    q.append(cur)
-        return not numCourses
 
+        # # 1. 拓扑排序 BFS O(M+N) O(M+N)
+        # q = []
+        # for i in range(numCourses):
+        #     if not indegree[i]:
+        #         q.append(i)
+        # while q:
+        #     pre = q.pop(0)
+        #     numCourses -= 1
+        #     for cur in adjacency[pre]:
+        #         indegree[cur] -= 1
+        #         if not indegree[cur]:
+        #             q.append(cur)
+        # return not numCourses
+
+        # 2.2 拓扑排序 DFS O(M+N) O(M+N)
+        def dfs(i, flags):
+            if flags[i] == -1:
+                return True
+            elif flags[i] == 1:
+                return False
+            flags[i] = 1
+            for j in adjacency[i]:
+                if not dfs(j, flags):
+                    return False
+            flags[i] = -1
+            return True
+        
+        flags = [0] * numCourses
+        for i in range(numCourses):
+            if not dfs(i, flags):
+                return False
+        return True
 
 # @lc code=end
 

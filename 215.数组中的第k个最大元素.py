@@ -37,13 +37,14 @@ import heapq
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        # # 1. 堆排序
+        # # 1. 堆排序 
         
-        # # 1.1 heapq （小根堆）
+        # # 1.1 heapq （小根堆）(适用N很大内存放不下，K很小)
+
         # # 1.1.1 
         # return heapq.nlargest(k, nums)[-1]
 
-        # # 1.1.2
+        # # 1.1.2 O(NlogK) O(K)
         # min_heap = []
         # for i in range(k):
         #     heapq.heappush(min_heap, nums[i])
@@ -53,14 +54,14 @@ class Solution:
         #         heapq.heapreplace(min_heap, nums[j])
         # return min_heap[0]
 
-        # # 1.2 heapq （大根堆）
+        # # 1.2 heapq （大根堆）O(N+klogN) O(N)
         # max_heap = [-x for x in nums]
         # heapq.heapify(max_heap)
         # for _ in range(k-1):
         #     heapq.heappop(max_heap)
         # return -max_heap[0]
 
-        # 2. 快速排序->快速选择 O(N) O(logn)
+        # 2. 快速排序->快速选择 O(N) O(logN)
         return self.quickselect(nums, 0, len(nums)-1, len(nums) - k)
 
     def quickselect(self, nums, left, right, target):
@@ -68,18 +69,16 @@ class Solution:
         def partition(nums, left, right):
             pivot_index = left
             pivot = nums[pivot_index]
-            low, high = left + 1, right
-            while True:
-                while low <= high and nums[low] < pivot:
-                    low += 1
-                while high >= low and nums[high] >= pivot:
+            low, high = left, right
+            while low < high:
+                while low < high and nums[high] > pivot:
                     high -= 1
-                if low > high:
-                    break
-                else:
+                while low < high and nums[low] <= pivot:
+                    low += 1
+                if low < high:
                     nums[low], nums[high] = nums[high], nums[low]
-            nums[pivot_index], nums[high] = nums[high], nums[pivot_index]
-            return high
+            nums[pivot_index], nums[low] = nums[low], nums[pivot_index]
+            return low
             
         pivot_index = partition(nums, left, right)
         if pivot_index == target:

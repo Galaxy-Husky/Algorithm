@@ -36,7 +36,7 @@ from itertools import permutations
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        # # 1. 回溯
+        # # 1. 回溯 O(N*N!) O(N!)
         # # 1.1 原地修改
         # def backtrack(start):
         #     if start == n:

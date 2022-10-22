@@ -33,7 +33,7 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        # # 1. 动态规划 + 竖着填表
+        # # 1. 动态规划 O(N^2) O(N^2)
         # l = len(s)
         # dp = [[False] * l for _ in range(l)]
         # start, max_l = 0, 1
@@ -51,7 +51,7 @@ class Solution:
         #                 start = i
         # return s[start:start+max_l]
 
-        # 2. 中心扩展
+        # 2. 中心扩展 O(N^2) O(1)
         def expandcenter(s, left, right):
             while left >= 0 and right < len(s) and s[left] == s[right]:
                 left -= 1

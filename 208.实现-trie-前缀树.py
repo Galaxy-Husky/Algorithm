@@ -38,52 +38,36 @@
 
 # @lc code=start
 
-class TrieNode:
-    def __init__(self):
-        self.child = {}
-        self.word = False
+# O(len(word)) O(len(T))
+from collections import defaultdict
+
 class Trie:
 
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.root = TrieNode()
+        self.children = defaultdict(Trie)
+        self.isword = False
 
     def insert(self, word: str) -> None:
-        """
-        Inserts a word into the trie.
-        """
-        cur = self.root
-        for w in word:
-            if w not in cur.child:
-                cur.child[w] = TrieNode()
-            cur = cur.child[w]
-        cur.word = True
+        cur = self
+        for c in word:
+            cur = cur.children[c]
+        cur.isword = True
 
     def search(self, word: str) -> bool:
-        """
-        Returns if the word is in the trie.
-        """
-        cur = self.root
-        for w in word:
-            if w not in cur.child:
+        cur = self
+        for c in word:
+            if c not in cur.children:
                 return False
-            cur = cur.child[w]    
-        return cur.word   
+            cur = cur.children[c]    
+        return cur.isword   
 
     def startsWith(self, prefix: str) -> bool:
-        """
-        Returns if there is any word in the trie that starts with the given prefix.
-        """
-        cur = self.root
-        for p in prefix:
-            if p not in cur.child:
+        cur = self
+        for c in prefix:
+            if c not in cur.children:
                 return False
-            cur = cur.child[p]
+            cur = cur.children[c]
         return True
-
-
 
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()

@@ -41,7 +41,18 @@ class TreeNode:
 
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
-        # 栈
+        # # 1. 递归 O(N) O(N)
+        # def preorder(root):
+        #     if not root:
+        #         return
+        #     res.append(root.val)
+        #     preorder(root.left)
+        #     preorder(root.right)
+        # res = []
+        # preorder(root)
+        # return res
+
+        # 2. 迭代 O(N) O(N)
         res = []
         if not root:
             return res

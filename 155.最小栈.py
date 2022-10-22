@@ -85,7 +85,7 @@ class MinStack:
     # def getMin(self) -> int:
     #   return self.min_stack[-1]
 
-    # 2. 保存差值，不用额外空间 O(1) O(1)
+    # 2. 保存差值 O(1) O(1)
 
     def __init__(self):
         """

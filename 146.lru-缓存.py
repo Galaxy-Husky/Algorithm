@@ -70,8 +70,9 @@
 
 # @lc code=start
 
-# 哈希表+双向链表
+# 哈希表+双向链表 O(1) O(capacity)
 class DLinkedNode:
+  
   def __init__(self, key=0, value=0):
     self.key = key
     self.value = value

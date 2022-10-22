@@ -37,7 +37,7 @@
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        # # 1. 二进制位
+        # # 1. 二进制位 O(N*2^N) O(N)
         # n = len(nums)
         # res = []
         # for mask in range(0, 1 << n):
@@ -54,7 +54,7 @@ class Solution:
         #     res.extend([[num] + item for item in res])
         # return res
 
-        # # 3. 回溯
+        # 3. 回溯 O(N*2^N) O(N)
         res = []
         n = len(nums)
 

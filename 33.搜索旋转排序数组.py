@@ -6,7 +6,7 @@
 # https://leetcode.cn/problems/search-in-rotated-sorted-array/description/
 #
 # algorithms
-# Medium (43.78%)
+# Medium (43.78%)-0
 # Likes:    2280
 # Dislikes: 0
 # Total Accepted:    611.5K
@@ -62,7 +62,7 @@
 # @lc code=start
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        # 二分查找 根据有序部分判断
+        # 二分查找 根据有序部分判断 O(logN) O(1)
         if not nums:
             return -1
         l, r = 0, len(nums) -1

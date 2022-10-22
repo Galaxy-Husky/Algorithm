@@ -49,16 +49,16 @@
 # @lc code=start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        # DFS 回溯
+        # DFS 回溯 O(S) O(target)
         def dfs(start, target, path):
             if target == 0:
                 res.append(path)
                 return
             for i in range(start, len(candidates)):
-                if target-candidates[i] < 0:
+                if target-candidates[i] < 0:  # 剪枝
                     break
                 dfs(i, target-candidates[i], path+[candidates[i]])
-        candidates.sort()
+        candidates.sort()  # 剪枝
         res = []
         dfs(0, target, [])
         return res

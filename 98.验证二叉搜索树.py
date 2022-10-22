@@ -49,26 +49,39 @@
 
 # @lc code=start
 # Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 class Solution:
-    def isValidBST(self, root: TreeNode) -> bool:
-        # 中序遍历
-        cur, pre, stack = root, None, []
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            top = stack.pop()
-            if pre and top.val <= pre.val:
-                return False
-            pre = top
-            cur = top.right
-        return True
+    def __init__(self):
+        self.pre = float('-inf')
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        # # 1. 中序遍历 值升序 O(N) O(N)
+        # cur, pre, stack = root, None, []
+        # while cur or stack:
+        #     while cur:
+        #         stack.append(cur)
+        #         cur = cur.left
+        #     top = stack.pop()
+        #     if pre and top.val <= pre.val:
+        #         return False
+        #     pre = top
+        #     cur = top.right
+        # return True
+
+        # 2. 递归 O(N) O(N)
+        if not root:
+            return True
+        if not self.isValidBST(root.left):
+            return False
+        if root.val <= self.pre:
+            return False
+        self.pre = root.val
+        return self.isValidBST(root.right)
+
 
 # @lc code=end
 

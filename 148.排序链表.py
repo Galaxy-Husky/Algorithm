@@ -64,7 +64,7 @@
 #         self.next = next
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 1. 归并排序
+        # 1. 归并排序 O(NlogN)
 
         def merge(left, right):
             h = dummy = ListNode()
@@ -79,8 +79,8 @@ class Solution:
             h.next = left if left else right
             return dummy.next
 
-        # # 1.1 自顶向下（递归，空间复杂度O(logn)）
-        # # 快慢指针
+        # # 1.1 自顶向下（递归，空间复杂度O(logN)）
+        # # 快慢指针找中点
         # if not head or not head.next:
         #     return head
         # slow, fast = head, head.next

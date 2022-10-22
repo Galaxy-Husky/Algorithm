@@ -70,7 +70,7 @@ from math import comb
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         # 1. 动态规划
-        # # 1.1
+        # # 1.1 O(MN) O(MN)
         # # dp = [[1] * n] +[([1] + [0] * (n-1)) for _ in range(m-1)]
         # dp = [[1]*n for i in range(m)]
         # for i in range(1, m):
@@ -78,7 +78,7 @@ class Solution:
         #         dp[i][j] = dp[i-1][j] + dp[i][j-1]
         # return dp[-1][-1]
 
-        # # 1.2 优化 保留两行
+        # # 1.2 优化 保留两行 O(MN) O(N)
         # pre = [1] * n
         # cur = [1] * n
         # for i in range (1, m):
@@ -87,7 +87,7 @@ class Solution:
         #     pre = cur[:]
         # return pre[-1]
 
-        # 1.3 优化 滚动数组
+        # 1.3 优化 滚动数组 O(MN) O(N)
         cur = [1] * n
         for i in range (1, m):
             for j in range (1, n):

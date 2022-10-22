@@ -63,6 +63,7 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # 1. 注意进位 O(max(m,n)) O(1)
         dummy = cur = ListNode(-1)
         carry = 0
         while l1 or l2 or carry:

@@ -34,7 +34,7 @@
 # @lc code=start
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        # 双指针 移动数字较小的指针
+        # 双指针 移动数字较小的指针 O(N) O(1)
         l, r = 0, len(height) - 1
         max_area = 0
         while l < r:

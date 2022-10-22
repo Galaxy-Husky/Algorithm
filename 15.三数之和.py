@@ -36,7 +36,7 @@
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        # 排序 + 双指针
+        # 排序 + 双指针 O(N^2) O(logN)
         n = len(nums)
         nums.sort()
         num_list = []
