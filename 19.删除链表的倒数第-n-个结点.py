@@ -76,8 +76,9 @@ class Solution:
         # return dummy.next
 
         # 2. 双指针 O(N) O(1)
-        slow = fast = dummy = ListNode(0, head)
-        for _ in range(n+1):
+        dummy = ListNode(0, head)
+        slow, fast = dummy, head
+        for _ in range(n):
             fast = fast.next
         while fast:
             fast = fast.next

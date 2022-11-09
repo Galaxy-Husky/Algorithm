@@ -39,35 +39,36 @@
 # @lc code=start
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
-    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        # new_head = reverse(curl_l -> cur_r)
-        # last_tail -> new_head
-        # new_tail = cur_l -> next_head
-        dummy = last_tail =  cur_r = ListNode(-1)
-        dummy.next = head
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # O(N) O(1)
+        def reverse(head):
+            prev, cur = None, head
+            while cur:
+                tmp = cur.next
+                cur.next = prev
+                prev = cur
+                cur = tmp
 
-        while True:
-            for i in range(k):
-                cur_r = cur_r.next
-                if cur_r is None:
+        dummy = ListNode(-1, head)
+        prev = end = dummy
+        while end.next:
+            for _ in range(k):
+                end = end.next
+                if not end:
                     return dummy.next
-            cur_l = last_tail.next
-            next_head = cur_r.next
-            cur_r.next = None
-            last_tail.next = self.reverse(cur_l)
-            cur_l.next, last_tail, cur_r =  next_head, cur_l, cur_l
-        
-    def reverse(self, head):
-        pre, cur = None, head
-        while cur:
-            cur.next, cur, pre = pre, cur.next, cur
-        return pre
-            
-        
+            left_node = prev.next
+            right_node = end.next
+            prev.next = None
+            end.next = None
+            reverse(left_node)
+            prev.next = end
+            left_node.next = right_node
+            prev = end = left_node
+        return dummy.next   
 # @lc code=end
 

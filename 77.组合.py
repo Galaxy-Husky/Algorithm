@@ -3,7 +3,7 @@
 #
 # [77] 组合
 #
-# https://leetcode-cn.com/problems/combinations/description/
+#  
 #
 # algorithms
 # Medium (72.66%)

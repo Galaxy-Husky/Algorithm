@@ -6,11 +6,11 @@
 # https://leetcode.cn/problems/unique-paths/description/
 #
 # algorithms
-# Medium (67.45%)
-# Likes:    1529
+# Medium (67.52%)
+# Likes:    1567
 # Dislikes: 0
-# Total Accepted:    502.3K
-# Total Submissions: 744.5K
+# Total Accepted:    521.8K
+# Total Submissions: 772.7K
 # Testcase Example:  '3\n7'
 #
 # 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
@@ -64,38 +64,7 @@
 #
 
 # @lc code=start
-from math import comb
-
-
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        # 1. 动态规划
-        # # 1.1 O(MN) O(MN)
-        # # dp = [[1] * n] +[([1] + [0] * (n-1)) for _ in range(m-1)]
-        # dp = [[1]*n for i in range(m)]
-        # for i in range(1, m):
-        #     for j in range(1, n):
-        #         dp[i][j] = dp[i-1][j] + dp[i][j-1]
-        # return dp[-1][-1]
-
-        # # 1.2 优化 保留两行 O(MN) O(N)
-        # pre = [1] * n
-        # cur = [1] * n
-        # for i in range (1, m):
-        #     for j in range (1, n):
-        #         cur[j] = pre[j] + cur[j-1]
-        #     pre = cur[:]
-        # return pre[-1]
-
-        # 1.3 优化 滚动数组 O(MN) O(N)
-        cur = [1] * n
-        for i in range (1, m):
-            for j in range (1, n):
-                cur[j] += cur[j-1]
-        return cur[-1]
-
-        # # 2. 组合
-        # return comb(m+n-2, n-1)
-
 # @lc code=end
 
