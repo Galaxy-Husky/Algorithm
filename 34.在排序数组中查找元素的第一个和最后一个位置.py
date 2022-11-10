@@ -35,23 +35,38 @@
 # @lc code=start
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        # 二分查找 查找左边界 O(logN) O(1)
-        def binarysearch(target):
+        # 1. 二分查找 查找左右边界 O(logN) O(1)
+        def binarysearch_left(target):
             left, right = 0, len(nums) - 1
-            left_border = -2
             while left <= right:
                 mid = (left + right) // 2
                 if nums[mid] < target:
                     left = mid + 1
                 elif nums[mid] >= target:
                     right = mid - 1
-                    left_border = right
-            return left_border
+            leftborder = right
+            return leftborder
 
-        leftborder, rightborder = binarysearch(target), binarysearch(target+1)
-        if leftborder == -2 or rightborder == -2:
+        def binarysearch_right(target):
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if nums[mid] <= target:
+                    left = mid + 1
+                elif nums[mid] > target:
+                    right = mid - 1
+            rightborder = left
+            return rightborder
+
+        # # 1.1 [左边界+1, 右边界-1]
+        leftborder, rightborder = binarysearch_left(target), binarysearch_right(target)
+        if leftborder+1 > rightborder-1:
             return [-1, -1]
-        if rightborder - leftborder >= 1:
-            return [leftborder+1, rightborder]
-        return [-1, -1]
+        return [leftborder+1, rightborder-1]
+
+        # 1.2 [左边界+1, (target+1)左边界]
+        leftborder, leftborder2 = binarysearch_left(target), binarysearch_left(target+1)
+        if leftborder+1 > leftborder2:
+            return [-1, -1]
+        return [leftborder+1, leftborder2]
 # @lc code=end

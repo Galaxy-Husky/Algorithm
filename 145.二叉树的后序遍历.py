@@ -40,10 +40,23 @@ class TreeNode:
 
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
-        # 栈：前序遍历左右互换后逆序输出
+    #     # 1. 递归 O(N) O(N)
+    #     def postorder(root):
+    #         if not root:
+    #             return
+    #         postorder(root.left)
+    #         postorder(root.right)
+    #         res.append(root.val)
+        
+    #     res = []
+    #     postorder(root)
+    #     return res
+
+        # 2. 迭代 前序遍历逆序 O(N) O(N)
         res = []
         if not root:
             return res
+
         stack = [root]
         while stack:
             cur = stack.pop()
